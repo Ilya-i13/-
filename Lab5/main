@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define N 10
+int main(void)
+{
+int x[N]; // массив из N элементов
+int sum_odd; // сумма нечетных
+int sum_even; // сумма четных
+int i;
+int k;
+// ввод массива
+for (i = 0; i < N; i++)
+scanf("%d", &x[i]);
+// вычисление суммы четных и нечетных
+sum_odd = 0;
+sum_even = 0;
+for (i = 0; i < N; i++)
+if (i % 2 == 1) //если число нечетное
+sum_odd = sum_odd + x[i];
+else
+sum_even = sum_even + x[i];
+// выборочное обнуление элементов
+if (sum_odd > sum_even)
+k = 0;
+else k = 1;
+for (i = k; i < N; i = i + 2)
+x[i] = 0;
+// вывод массива
+for (i = 0; i < N; i++)
+printf("%d ", x[i]);
+printf("\n");
+system("pause");
+return 0;
+}
