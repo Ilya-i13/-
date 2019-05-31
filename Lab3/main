@@ -1,0 +1,42 @@
+#include <stdio.h>
+#define true 1
+#define false 0
+
+int main (void)
+{
+int c;
+int flag=false;
+int lon=0;
+int k=0;
+int found=0;
+
+while((c=getchar())!=EOF)
+    {
+if(c==' '||c==';'||c==','||c=='.'||c=='\n')
+{
+if (flag==true)
+{
+if(lon!=k)
+{
+found++;
+}
+}
+k=lon;
+lon=0;
+flag=false;
+}
+else
+{
+lon++;
+flag=true;
+}
+}
+if(found==1)
+{
+printf("Slova vse odinakovoy dlinny\n");
+}
+else 
+{
+printf("Slova vse raznoy dlinny\n");
+}
+}
