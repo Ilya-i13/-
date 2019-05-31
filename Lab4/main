@@ -1,0 +1,31 @@
+
+#include <stdio.h> 
+//определение символьных констант
+#define MAXLINE 1000 
+void process_line(char buffer[] );
+int main(void ) 
+{ 
+char line[MAXLINE];
+gets( line ); 
+process_line( line ); 
+puts( line); 
+return 0; 
+} 
+void process_line( char buffer[] ) 
+{
+// описание переменных и начальные присваивания (инициализация)
+int posIN = 0;// позиция текущего символа исходной строки 
+int posOUT = 0;// позиция символа результирующей строки
+while (buffer[posIN] != '\0') // цикл чтения символов из строки до нулевого символа(символ конца строки
+{
+if (buffer[posIN] >= '0' && buffer[posIN] <= '9'&&buffer[posIN+1]!='a'  )//если элемент является цифрой, то в результирующую строку ничего не заносится, и мы идем дальше по исходной строке
+posIN++;
+else //если элемент не является цифрой, то он копируется в результирующую строку
+{
+buffer[posOUT] = buffer[posIN];
+posIN++;
+posOUT++;
+}
+}
+buffer[posOUT] = '\0';// добавляем символ конца строки в результирующий массив
+}
