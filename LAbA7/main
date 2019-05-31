@@ -1,0 +1,41 @@
+#include <stdio.h>
+int main(void)
+{
+long z;
+unsigned long y, inverted_y;
+int byte_of_y, inverted_byte;
+int i;
+inverted_y = 0;
+// счётчик нечётных позиций
+printf("z = ");
+//z = 0x12345678;
+scanf("%x", &z); // ввод в шестнадцатиричном
+// формате
+y = (unsigned int)z;
+while (y != 0)
+{
+byte_of_y = y & 0xFF; //берем младший байт у
+inverted_byte = 0;
+for (i = 0;i < 8;i++) //8 бит
+{
+inverted_byte <<= 1; //сдвиг влево на один бит
+inverted_byte += byte_of_y & 1;//записываем в inverted_byte один бит
+byte_of_y >>= 1; //сдвиг вправо на один бит
+}
+inverted_y <<= 8;//сдвиг влево на 1 байт
+inverted_y += inverted_byte;
+y >>= 8;//сдвиг на один байт вправо
+}
+//теперь в inverted_y у нас повернутые байты в обратном порядке
+//требуется, чтобы были повернутые байты в обычном порядке
+z = 0;
+while (inverted_y != 0)
+{
+z <<= 8;
+z += inverted_y & 0xFF; //прибавляем к z младший байт из inverted_y
+inverted_y >>= 8; //сдвигаем inverted_y на байт вправо
+}
+printf("result: %x\n", z);
+system("pause");
+return 0;
+}
